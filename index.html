@@ -1,5 +1,6 @@
 <html>
 <meta http-equiv="Content-Type" content="text/html; Charset=UTF-8"  />
+<link href='https://fonts.googleapis.com/css?family=Dosis:400,600' rel='stylesheet' type='text/css'>
 <head>
     <title> synk </title>
     <style>
@@ -11,15 +12,25 @@ body {
     width: 200px;
     margin: 0 auto;
     font-size: 3em;
-    font-weight: 700;
+    font-weight: 400;
     line-height: 2;
+    background: black;
+    color: white;
+    font-family: "Dosis";
+    text-align: right;
+}
+
+#output {
+    font-size: 2em;
+    font-weight: 600;
+    text-align: left;
 }
     </style>
 </head>
 
 <body>
     <span id="output">
-        NOTHING YET
+        SCORE
     </span> <span id="score"></span>
 
     <div id="one" onclick="conn.send('1');" class="button"> 1 </div>
@@ -48,20 +59,10 @@ var last_connection_time = 0,
         if (window["WebSocket"]) {
             conn = new WebSocket(host+"/socket/"+subd)
             conn.onopen = function() {
-                conn.send(client_id)
-            }
-            conn.onclose = function (evt) {
-                console.log("The connection has closed.")
-                delayedConnect() }
-                conn.onmessage = function (evt) {
-                    if (evt.data !== ">heartbeat<") {
-                        console.log(evt.data);
-                        code = evt.data.substr(0,4);
-                        console.log(code === "FAIL");
-                        if (code === "FAIL") {
-                            $("#output").html("FAIL")
+                conn.send(client_idbackground: = "FAIL") {
+                            $("#body").css("background", "#a13")
                         } else if (code === "GOOD"){
-                            $("#output").html("GOOD")
+                            $("#body").css("background", "#5a5")
                             score++;
                         } else if (code === "INIT") {
                             data = evt.data.substr(5).split(" ");
