@@ -87,7 +87,7 @@ var last_connection_time = 0,
                         } else if (code === "INIT") {
                             data = evt.data.substr(5).split(" ");
                             for (var i = 0; i < data.length; i++) {
-                                $("#clickers").append("<div onclick='conn.send(\""+data[i]+"\")'>"+"<img src='http://cdn.loc.gov/service/pnp/prokc/20900/209"+pad(data[i], 2)+"r.jpg' width='125' /></div>")
+                                $("#clickers").append("<span onclick='conn.send(\""+data[i]+"\")'>"+"<img src='http://cdn.loc.gov/service/pnp/prokc/20900/209"+pad(data[i], 2)+"r.jpg' width='250' /></span>")
                             }
                             $("#one").html(data[0]);
                             $("#two").html(data[1]);
