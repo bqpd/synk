@@ -68,7 +68,7 @@ var last_connection_time = 0,
                     if (evt.data !== ">heartbeat<") {
                         console.log(evt.data);
                         code = evt.data.substr(0,4);
-                        console.log(code === "FAIL") {
+                        if (code === "FAIL") {
                             $("#body").css("background", "#a13")
                         } else if (code === "GOOD"){
                             $("#body").css("background", "#5a5")
