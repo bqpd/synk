@@ -9,7 +9,7 @@
 }
 
 body {
-    width: 200px;
+    width: 250px;
     margin: 0 auto;
     font-size: 3em;
     font-weight: 400;
@@ -20,7 +20,7 @@ body {
     text-align: right;
 }
 
-#output {
+h1 {
     font-size: 2em;
     font-weight: 600;
     text-align: left;
@@ -29,9 +29,9 @@ body {
 </head>
 
 <body>
-    <span id="output">
-        SCORE
-    </span> <span id="score"></span>
+    <h1>
+        SCORE <span id="score"></span>
+    </h1>
 
     <div id="one" onclick="conn.send('1');" class="button"> 1 </div>
     <div id="two" onclick="conn.send('2');" class="button"> 2 </div>
@@ -69,9 +69,9 @@ var last_connection_time = 0,
                         console.log(evt.data);
                         code = evt.data.substr(0,4);
                         if (code === "FAIL") {
-                            $("#body").css("background", "#a13")
+                            $("body").css("background", "#a13")
                         } else if (code === "GOOD"){
-                            $("#body").css("background", "#5a5")
+                            $("body").css("background", "#5a5")
                             score++;
                         } else if (code === "INIT") {
                             data = evt.data.substr(5).split(" ");
