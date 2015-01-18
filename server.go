@@ -105,11 +105,12 @@ func chat(a, b socket) {
 
     for i := 0; i < 100; i++ {
 
-        x = rand.Intn(99)
-        y = rand.Intn(99)
-        z = rand.Intn(99)
-        fmt.Fprint(a, "INIT "+strconv.Itoa(x)+" "+strconv.Itoa(y)+" "+strconv.Itoa(z))
-        fmt.Fprint(b, "INIT "+strconv.Itoa(x)+" "+strconv.Itoa(y)+" "+strconv.Itoa(z))
+        var initstring string = "INIT"
+        for i := 0; i < 9; i++ {
+            initstring += " "+strconv.Itoa(rand.Intn(99))
+        }
+        fmt.Fprint(a, initstring)
+        fmt.Fprint(b, initstring)
 
         var A, B string
         for A == "" || B == "" {
