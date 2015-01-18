@@ -32,6 +32,7 @@ import (
     "path/filepath"
     "strconv"
     "math/rand"
+    "time"
 )
 
 func main() {
@@ -136,6 +137,7 @@ func chat(a, b socket) {
         }
 
         fmt.Println("SCORE FOR "+a.id+" AND "+b.id+" IS "+strconv.Itoa(score))
+        time.Sleep(3*time.Second)
     }
 
     //errc := make(chan error, 1)
