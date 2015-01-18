@@ -85,7 +85,7 @@ var last_connection_time = 0,
                             score++;
                         } else if (code === "INIT") {
                             data = evt.data.substr(5).split(" ");
-                            for (var i = 0; i < data,length; i++) {
+                            for (var i = 0; i < data.length; i++) {
                                 $("#clickers").append("<div onclick='conn.send(\""+data[i]+"\")'>"+data[i]+"</div>")
                             }
                             $("#one").html(data[0]);
