@@ -56,6 +56,7 @@ var last_connection_time = 0,
                     if (evt.data !== ">heartbeat<") {
                         console.log(evt.data);
                         code = evt.data.substr(0,4);
+                        console.log(code === "FAIL");
                         if (code == "FAIL") {
                             $("#output").html("FAIL")
                         } else if (code == "GOOD"){
@@ -65,7 +66,7 @@ var last_connection_time = 0,
                             data = evt.data.substr(5).split(" ");
                             $("#one").html(data[0]);
                             $("#two").html(data[1]);
-                            $("#three").html(data[0]);
+                            $("#three").html(data[2]);
                         }
                     }
                 }
