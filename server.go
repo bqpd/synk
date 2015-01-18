@@ -96,7 +96,6 @@ func match(c socket) {
 
 func chat(a, b socket) {
     fmt.Println("[ws] matched "+a.id+" and "+b.id+" on channel "+a.loc)
-    var x, y, z int
 
     //fmt.Fprint(a, "/sys You are talking to "+b.id)
     //fmt.Fprint(b, "/sys You are talking to "+a.id)
