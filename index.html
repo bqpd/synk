@@ -33,6 +33,9 @@ h1 {
         SCORE <span id="score"></span>
     </h1>
 
+    <div id="clickers">
+    </div>
+
     <div id="one" onclick="conn.send('1');" class="button"> 1 </div>
     <div id="two" onclick="conn.send('2');" class="button"> 2 </div>
     <div id="three" onclick="conn.send('3');" class="button"> 3 </div>
@@ -74,6 +77,7 @@ var last_connection_time = 0,
                     if (evt.data !== ">heartbeat<") {
                         console.log(evt.data);
                         code = evt.data.substr(0,4);
+                        $("#clickers").html("");
                         if (code === "FAIL") {
                             $("body").css("background", "#a13")
                         } else if (code === "GOOD"){
@@ -81,6 +85,9 @@ var last_connection_time = 0,
                             score++;
                         } else if (code === "INIT") {
                             data = evt.data.substr(5).split(" ");
+                            for (var i = 0; i < data,length; i++) {
+                                $("#clickers").append("<div onclick='conn.send(\""+data[i]+"\")'>"+data[i]+"</div>")
+                            }
                             $("#one").html(data[0]);
                             $("#two").html(data[1]);
                             $("#three").html(data[2]);
