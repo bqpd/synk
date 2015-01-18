@@ -1,0 +1,90 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html; Charset=UTF-8"  />
+<head>
+    <title> synk </title>
+    <style>
+.button {
+    cursor: pointer;
+}
+    </style>
+</head>
+
+<body>
+    <div id="output">
+        NOTHING YET
+    </div>
+
+    <div id="one" onclick="addChat('me', '1');" class="button"> 1 </div>
+    <div id="two" onclick="addChat('me', '2');" class="button"> 2 </div>
+    <div id="three" onclick="addChat('me', '3');" class="button"> 3 </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/aes.js"></script>
+    <script src="https://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha3.js"></script>
+    <script>
+
+/*
+* Websocket interfacing *
+*/
+var subd = 'default'
+
+var last_connection_time = 0,
+    connecting = false,
+    host = "ws://127.0.0.1:4000",
+    conn,
+    client_id = Math.random().toString(36).slice(2).substring(0,13),
+
+    connectWS = function() {
+        if (window["WebSocket"]) {
+            conn = new WebSocket(host+"/socket/"+subd)
+            conn.onopen = function() {
+                conn.send(client_id)
+            }
+            conn.onclose = function (evt) {
+                console.log("The connection has closed.")
+                delayedConnect() }
+                conn.onmessage = function (evt) {
+                    if (evt.data !== ">heartbeat<") {
+                        console.log(evt.data)
+                    }
+                }
+            } else {
+                console.log("Sadly, your browser does not support WebSockets.")
+            }
+            connecting = false
+    },
+
+    delayedConnect = function() {
+        if ( !connecting ) {
+            var time = new Date().getTime()
+            if ( time > last_connection_time ) {
+                var delay = Math.max(last_connection_time+5000, time) - time
+                last_connection_time = time + delay
+                connecting = true
+                setTimeout( connectWS, delay )
+            }
+        }
+    }
+
+    /*
+    * Message parsing and display *
+    */
+
+
+    $(document).ready(connectWS)
+
+    var beat = true,
+    heartbeat = function() {
+        if (beat && conn.readyState === 1) {
+            conn.send(">heartbeat<")
+        }
+        setTimeout("heartbeat()", 30000)
+    }
+
+    setTimeout("heartbeat()", 60000)
+</script>
+</body>
+
+
+</html>

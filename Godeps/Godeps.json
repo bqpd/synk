@@ -1,0 +1,11 @@
+{
+	"ImportPath": "syncgame",
+	"GoVersion": "go1.4beta1",
+	"Deps": [
+		{
+			"ImportPath": "code.google.com/p/go.net/websocket",
+			"Comment": "null-95",
+			"Rev": "75017ecb835f3ed8e3ee0b410d7a7af55246a901"
+		}
+	]
+}
