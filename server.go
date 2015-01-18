@@ -37,8 +37,7 @@ import (
 func main() {
     http.HandleFunc("/", rootHandler)
     http.Handle("/socket/", websocket.Handler(socketHandler))
-    //err := http.ListenAndServe(":"+os.Getenv("PORT"), nil)
-    err := http.ListenAndServe(":4000", nil)
+    err := http.ListenAndServe(":"+os.Getenv("PORT"), nil)
     if err != nil {
         log.Fatal(err)
     }
