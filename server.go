@@ -117,10 +117,20 @@ func chat(a, b socket) {
             websocket.Message.Receive(a.ws, &temp)
             if temp != ">heartbeat<" { A = temp }
             fmt.Println("A sent: " + temp + ", A is: " + A)
+            if temp == "" {
+                i = 100
+                A = "die"
+                B = "die"
+            }
 
             websocket.Message.Receive(b.ws, &temp)
             if temp != ">heartbeat<" { B = temp }
             fmt.Println("B sent: " + temp + ", B is: " + B)
+            if temp == "" {
+                i = 100
+                A = "die"
+                B = "die"
+            }
         }
 
         fmt.Println(strconv.Itoa(i) + " results: " + A + ", " + B)
