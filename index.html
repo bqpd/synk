@@ -48,6 +48,12 @@ h1 {
 */
 var subd = 'default'
 
+function pad(n, width, z) {
+    z = z || '0';
+    n = n + '';
+    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+}
+
 var last_connection_time = 0,
     connecting = false,
     host = "ws://synk.herokuapp.com",
@@ -79,7 +85,7 @@ var last_connection_time = 0,
                             $("#two").html(data[1]);
                             $("#three").html(data[2]);
                         }
-                        $("#score").html(score);
+                        $("#score").html(pad(score, 5));
                     }
                 }
             } else {
