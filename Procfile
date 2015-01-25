@@ -1,1 +1,1 @@
-web: syncgame
+web: synk
